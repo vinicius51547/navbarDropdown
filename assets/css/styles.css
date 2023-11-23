@@ -1,0 +1,382 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --black-color: hsl(220, 24%, 12%);
+  --black-color: hsl(220, 24%, 15%);
+  --black-coloren: hsl(220, 20%, 18%);
+  --white-color: #fff;
+  --body-color: hsl(0, 0%, 71%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* Remove o fundo azul de itens clicados no chrome para android */
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+:focus {
+  outline: none !important;
+}
+
+hr {
+  border-color: #58585b;
+  margin-bottom: 1.20rem;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--white-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+}
+
+.nav-logo,
+.nav-burger,
+.nav-close {
+  color: var(--black-color);
+}
+
+.nav-data {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  font-weight: var(--font-semi-bold);
+}
+
+.nav-logo i {
+  font-weight: initial;
+  font-size: 1.25rem;
+}
+
+.nav-toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.nav-burger,
+.nav-close {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: opacity .1s, transform .4s;
+}
+
+.nav-close {
+  opacity: 0;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1118px) {
+  .nav-menu {
+    position: absolute;
+    right: -100%;
+    top: 3.5rem;
+    width: 280px;
+    height: 100vh;
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: right .4s, opacity .3s;
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .nav-list {
+    background-color: var(--white-color);
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .nav-menu {
+    width: 100%;
+  }
+}
+
+.nav-link {
+  color: var(--black-color);
+  background-color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color .3s;
+}
+
+.nav-link:hover {
+  background-color: var(--black-color);
+}
+
+/* Abrir menu */
+.show-menu {
+  opacity: 1;
+  right: 0;
+  pointer-events: initial;
+}
+
+/* Show icon */
+.show-icon .nav-burger {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+.show-icon .nav-close {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/*=============== DROPDOWN ===============*/
+.dropdown-item {
+  cursor: pointer;
+}
+
+/* Desabilitando quando apertar no dropdown */
+.nav-link.disable {
+  display: none;
+}
+
+.dropdown-arrow {
+  font-size: 1.25rem;
+  font-weight: initial;
+  transition: transform .4s;
+}
+
+.dropdown-link {
+  padding: 1.25rem;
+  color: var(--black-color);
+  display: flex;
+  background-color: var(--white-color);
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+}
+
+.dropdown-link i {
+  font-size: 1.25rem;
+  font-weight: initial;
+}
+
+.services-link {
+  display: block;
+  padding: 1.25rem;
+  color: var(--black-color);
+  display: flex;
+  background-color: var(--white-color);
+  align-items: center;
+  justify-content: space-between;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+}
+
+.services-link:hover,
+.dropdown-link:hover {
+  background-color: var(--black-color);
+}
+
+.dropdown-menu {
+  top: 0;
+  right: -100%;
+  position: absolute;
+  width: 280px;
+  overflow: hidden;
+  transition: right .4s, opacity .3s;
+}
+
+/* Ativando quando apertar no dropdown */
+.dropdown-menu.active {
+  display: block;
+  width: 100%;
+  opacity: 1;
+  outline: none;
+  right: 0;
+  top: 0;
+  transition: right .4s, opacity .3s;
+}
+
+.back-button {
+  background: none;
+  color: var(--black-color);
+  border: 0;
+  padding: 1.25rem;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  border-bottom: 1px solid #58585b;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: var(--black-color);
+}
+
+/* Show dropdown menu */
+@media (min-width: 1118px) {
+  .dropdown-item:hover .dropdown-menu {
+    display: block;
+    transition: max-height .4s ease-in;
+  }
+
+  /* Rotate dropdown icon */
+  .dropdown-item:hover .dropdown-arrow {
+    transform: rotate(90deg);
+  }
+
+  .back-button {
+    display: none;
+  }
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .nav-link {
+    padding-inline: 1rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1118px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-list {
+    height: 100%;
+    display: flex;
+    column-gap: 3rem;
+  }
+
+  .nav-link {
+    height: 100%;
+    padding: 0;
+    justify-content: initial;
+    column-gap: .25rem;
+  }
+
+  .nav-link:hover {
+    background-color: transparent;
+  }
+
+  .dropdown-item {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    max-height: initial;
+    overflow: initial;
+    position: absolute;
+    width: 220px;
+    left: 0;
+    top: 6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+
+  .dropdown-link {
+    padding-inline: 1rem 3.5rem;
+  }
+
+  .services-link {
+    display: none;
+  }
+
+  /* Show dropdown menu */
+  .dropdown-item:hover .dropdown-menu {
+    opacity: 1;
+    top: 5.5rem;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+
+}
